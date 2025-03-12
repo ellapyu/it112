@@ -1,0 +1,13 @@
+{% if ingredient['id'] != selected_ingredient_id %}
+<form id="edit" action="{{ url_for('update_ingredient', ingredient_id=ingredient['id']) }}" method="GET">
+    <button type="submit">Edit</button>
+</form>
+
+{% else %}
+<form id="update" action="{{ url_for('update_ingredient', ingredient_id=ingredient['id']) }}" method="POST">
+    {{ update_form.hidden_tag() }}
+    {{ update_form.new_name.label }} {{ update_form.new_name() }} <br>
+    {{ update_form.new_category.label }} {{ update_form.new_category() }}
+    {{ update_form.submit() }}
+</form>
+{% endif %}

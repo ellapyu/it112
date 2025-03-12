@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food inventory- Ella Yu's IT112 SQLite3 Flask App</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <h1>Ingredient Database</h1>
+
+    {% include 'add_item.html' %}
+    
+    <main>        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Ingredient</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ingredient in ingredientInventory %}
+                <tr>
+                    <td>{{ ingredient['category'] }}</td>
+                    <td>{{ ingredient['ingredient'] }}</td>
+
+                    <td>{% include 'update.html' %}</td>
+                    <td>{% include 'delete.html' %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

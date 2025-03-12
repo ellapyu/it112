@@ -1,0 +1,147 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+    line-height: 1.5;
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #e7fcd5; 
+    /* background-color: #f6ffee;   */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+main {
+    display: block;
+    text-align: center;
+}
+
+
+h1 {
+    font-size: 2em;
+    text-align: center;
+    margin: 1em auto 0em;
+    
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+    margin: 1em auto;
+}
+
+button {
+    display: inline-block;
+}
+
+table {
+    margin: 1em auto 3em;
+    border-collapse: collapse;
+}
+
+td {
+    padding: .5em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    padding: .5em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+form {
+    display: inline-block;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.login {
+    margin: 0 auto;
+}
+
+.login label {
+    display: inline-block;
+    width: 10em;
+}
+
+form#delete, form#edit {
+    margin: 0;
+}
+
+form label {
+    display: inline-block;
+    margin: 0 .2em .5em .3em;
+}
+
+form .macros label {
+    display:inline-block;
+    margin: 0 .3em 0 0;
+}
+
+form .macros input {
+    display:inline-block;
+    margin: 0 .3em 0 0;
+    padding: 1em;
+}
+.message-container {
+    margin: .7em 0;
+    text-align: center;
+}
+
+
+.error {
+    color: rgb(95, 28, 28);
+    font-size: 0.9em;
+    line-height: 1em;
+    margin-bottom: .5em;
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+
+@media screen and (max-width: 800px) {
+    body {
+        font-size: 90%;
+    }
+
+    main {
+        float: none!important;
+        max-width: 100%;
+        padding-top: 5%;
+    }
+    
+    aside {
+        float: none!important;
+        max-width: 100%;
+    }
+
+    p {
+        margin: 1em auto;
+        text-align: center;
+    }
+    
+}

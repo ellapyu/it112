@@ -1,0 +1,33 @@
+{% if selected_inventory_id != inventory.id %}
+
+<form method="GET" action="{{ url_for('update_inventory', inventory_id=inventory['id']) }}">
+    <button type="submit">Edit</button>
+</form>
+{% else %}
+    <form action="{{ url_for('update_inventory', inventory_id=inventory['id']) }}" method="POST">
+        {{ update_form.hidden_tag() }}
+        <label>{{ update_form.new_name.label }}</label> {{ update_form.new_name() }}
+        <label>{{ update_form.new_category.label }}</label> {{ update_form.new_category() }}
+        <label>{{ update_form.quantity.label }}</label> {{ update_form.quantity() }}
+        <fieldset>
+            <legend>{{ update_form.macros.label }}</legend>
+            {% for macro in update_form.macros.choices %}
+                <label>
+                    <input type="checkbox" name="{{ update_form.macros.name }}" value="{{ macro[0] }}"
+                        {% if macro[0] in update_form.macros.data %}checked{% endif %}>
+                    {{ macro[1] }}
+                </label><br>
+            {% endfor %}
+        </fieldset>
+        {{ update_form.submit() }}
+    </form>
+    {% if update_form.errors %}
+    <div class="error-messages">
+        {% for field, errors in update_form.errors.items() %}
+            {% for error in errors %}
+                <p class="error"> {{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
+{% endif %}

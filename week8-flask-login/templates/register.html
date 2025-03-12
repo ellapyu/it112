@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Account for Ella Yu's 112 Website</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Register</h1>
+    <div class="login">
+        <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        
+        {{ form.username.label }} {{ form.username() }}<br>
+        {{ form.email.label }} {{ form.email() }}<br>
+        {{ form.password.label }} {{ form.password() }}<br>
+        {{ form.confirm.label }} {{ form.confirm() }}<br>
+        
+        {{ form.submit() }}<br>
+        
+        <div class="message-container">
+            {% for error in form.username.errors %}
+            <p class="error">{{ error }}</p>
+            {% endfor %}
+            {% for error in form.email.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+
+            {% for error in form.password.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+
+            {% for error in form.confirm.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        </form>
+    </div>
+    <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
+</body>
+</html>
