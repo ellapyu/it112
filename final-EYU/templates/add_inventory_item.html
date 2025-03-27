@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Ingredient</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body id="inventory">
+
+    <h1>Add New Ingredient</h1>
+
+<form id="add_inventory_item" action="{{ url_for('add_inventory_item') }}" method="POST" novalidate>
+    {{ item_form.hidden_tag() }}
+
+    <label for="item">Item name:</label>
+    {{ item_form.item() }} 
+    <br>
+
+    <label for="category">Category:</label>
+    {{ item_form.category() }} 
+    <br>
+
+    <label for="macros">Macronutrients:</label>
+    {% for macro in item_form.macros %}
+        <label class="macros">{{ macro }} {{ macro.label }}</label>
+    {% endfor %}
+    <br>
+
+    <label for="category">Quantity:</label>
+    {{ item_form.quantity() }} 
+    <br>
+
+    <button class="inlineButton" type="submit">Add</button>
+</form>
+
+<div class="message-container">
+    {% if item_form.item.errors %} 
+        {% for error in item_form.item.errors %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% if item_form.category.errors %}
+        {% for error in item_form.category.errors %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% if item_form.quantity.errors %}
+        {% for error in item_form.quantity.errors %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+
+</div>
+
+    <a class="back" href="{{ url_for('index') }}">Back to Inventory</a>
+</body>
+</html>

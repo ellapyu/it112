@@ -1,0 +1,34 @@
+<!-- add item to ingredient table in db -->
+<form id="add_item" action="/add_item" method="POST" novalidate>
+    {{ item_form.hidden_tag() }}
+
+    <label for="item">Item name:</label>
+    {{ item_form.item() }} 
+    <br>
+
+    <label for="category_form">Category:</label>
+    {{ item_form.category() }} 
+    <br>
+
+    <label for="macros">Macronutrients:</label>
+    {% for macro in item_form.macros %}
+        <label>{{ macro }} {{ macro.label }}</label>
+    {% endfor %}
+    <br>
+
+    {{ item_form.submit() }}
+</form>
+
+<div class="message-container">
+    {% if item_form.item.errors %} 
+        {% for error in item_form.item.errors %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% if item_form.category.errors %}
+        {% for error in item_form.category.errors %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+</div>

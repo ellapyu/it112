@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login for Ella Yu's IT112 Website</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Login</h1>
+    <div class="login">
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.login_field.label }} {{ form.login_field() }}<br>
+        {{ form.password.label }} {{ form.password() }}<br>
+        <label>
+            <input type="checkbox" onclick="togglePassword(this.checked)"> Show Password
+          </label>
+        <br>
+
+    
+        {{ form.submit() }}
+        
+        <div class="message-container">
+            {% for error in form.login_field.errors %}
+            <p class="error">{{ error }}</p>
+            {% endfor %}
+
+            {% for error in form.password.errors %}
+            <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+    </form>
+    </div>
+
+    <div class="switchbox">
+        <p>Don't have an account?</p>
+        <a class="login" href="{{ url_for('register') }}">Register here</a>
+    </div>
+<script>
+    function togglePassword(show) {
+        document.querySelectorAll('input[type="password"], input[data-visible="true"]').forEach(input => {
+            if (show) {
+                input.type = 'text';
+                input.setAttribute('data-visible', 'true');
+            } else {
+                input.type = 'password';
+                input.removeAttribute('data-visible');
+            }
+        });
+    }
+</script>
+</body>
+</html>

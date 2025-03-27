@@ -1,0 +1,30 @@
+<!-- add ingredient to inventory, but also handles cases where the ingredient is not in the ingredient database, prompting user to add it -->
+
+<form action="{{ url_for('add_ingredient') }}" method="POST" novalidate>
+    {{ inventory_form.hidden_tag() }} 
+
+    <label for="ingredient">Add an Ingredient:</label>
+    {{ inventory_form.ingredient(id="ingredient", list="ingredient-list") }}  
+    <datalist id="ingredient-list">
+        {% for ingredient in all_ingredients %}
+            <option value="{{ ingredient }}"></option>
+        {% endfor %}
+    </datalist>
+    <br>
+
+    <label for="quantity">Quantity:</label>
+    {{ inventory_form.quantity(id="quantity")}}
+    <button class ="inlineButton" type="submit">Add</button>
+</form>
+
+<div class="message-container">
+    {% if inventory_form.ingredient.errors %}
+        <p class="error">{{ inventory_form.ingredient.errors[0] }}</p>
+    {% endif %}
+    {% if inventory_form.quantity.errors %}
+    <p class="error">{{ inventory_form.quantity.errors[0] }}</p>
+{% endif %}
+
+</div>
+
+

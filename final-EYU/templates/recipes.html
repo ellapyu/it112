@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <title>Recipe Suggestions</title>
+</head>
+<body>
+    <h1>Recipe Suggestions</h1>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+    <div class="recipes">
+        <ul>
+            {% for recipe in recipes %}
+                <li>
+                    <h2>{{ recipe.title }}</h2>
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}" width="200">
+                    <h3>Ingredients Onhand</h3>
+                    <ul>
+                        {% for ingredient in recipe.usedIngredients %}
+                            <li>{{ ingredient.name }}</li>
+                        {% endfor %}
+                    </ul>
+                    <h3>Missing Ingredients</h3>
+                    <ul>
+                        {% for ingredient in recipe.missedIngredients %}
+                            <li>{{ ingredient.name }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a class="recipe" href="https://spoonacular.com/recipes/{{ recipe.title.replace(' ', '-') }}-{{ recipe.id }}" target="_blank">View Recipe</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+    <a class="back" href="{{ url_for('index') }}">Back to Inventory</a>
+</body>
+</html>
